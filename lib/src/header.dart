@@ -35,21 +35,14 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        LeadingDate(
-          onTap: onDateTap,
-          displayedText: displayedDate,
-          displayedTextStyle: leadingDateTextStyle,
-        ),
-        PageSliders(
-          onBackward: onPreviousPage,
-          onForward: onNextPage,
-          slidersSized: slidersSize,
-          slidersColor: slidersColor,
-        ),
-      ],
+    return PageSliders(
+      onBackward: onPreviousPage,
+      onForward: onNextPage,
+      slidersSized: slidersSize,
+      slidersColor: slidersColor,
+      onDateTap: onDateTap,
+      displayedDate: displayedDate,
+      leadingDateTextStyle: leadingDateTextStyle,
     );
   }
 }

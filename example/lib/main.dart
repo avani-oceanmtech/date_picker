@@ -40,33 +40,104 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (selectedDate != null)
-              Text(DateFormat(
-                'MMM dd, yy',
-              ).format(selectedDate!)),
-            TextButton(
-              onPressed: () async {
-                final date = await showDatePickerDialog(
-                  context: context,
+        child: 1 != 1
+            ? Dialog(
+                insetPadding: EdgeInsets.zero,
+                child: DatePicker(
                   initialDate: DateTime.now(),
                   maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
-                  minDate:
-                      DateTime.now().subtract(const Duration(days: 365 * 3)),
-                );
-                if (date != null) {
-                  setState(() {
-                    selectedDate = date;
-                  });
-                }
-              },
-              child: const Text('Show Picker'),
-            ),
-          ],
-        ),
+                  minDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
+                  enabledCellTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                  daysNameTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.orange,
+                      ),
+
+                  daysNameCase: DaysNameCase.camelCase,
+                  currentDateTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                  currentDateDecoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(96)),
+
+                  leadingDateTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                  selectedCellTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                  disbaledCellTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                  onDateChanged: (value) {},
+                  // initialDate: initialDate,
+                  // maxDate: maxDate,
+                  // minDate: minDate,
+                  // onDateChanged: (value) => Navigator.pop(context, value),
+                  // initialPickerType: initialPickerType,
+                  // padding: contentPadding,
+                  // currentDateDecoration: currentDateDecoration,
+                  // currentDateTextStyle: currentDateTextStyle,
+                  // disbaledCellDecoration: disbaledCellDecoration,
+                  // disbaledCellTextStyle: disbaledCellTextStyle,
+                  // enabledCellDecoration: enabledCellDecoration,
+                  // enabledCellTextStyle: enabledCellTextStyle,
+                  // selectedCellDecoration: selectedCellDecoration,
+                  // selectedCellTextStyle: selectedCellTextStyle,
+                  // currentDateColor: currentDateColor,
+                  // daysNameTextStyle: daysNameTextStyle,
+                  // disbaledCellColor: disbaledCellColor,
+                  // selectedCellColor: selectedCellColor,
+                  // enabledCellColor: enabledCellColor,
+                  // leadingDateTextStyle: leadingDateTextStyle,
+                  // slidersColor: slidersColor,
+                  // slidersSize: slidersSize,
+                  // highlightColor: highlightColor,
+                  // splashColor: splashColor,
+                  // splashRadius: splashRadius,
+                ),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (selectedDate != null)
+                    Text(DateFormat(
+                      'MMM dd, yy',
+                    ).format(selectedDate!)),
+                  TextButton(
+                    onPressed: () async {
+                      final date = await showDatePickerDialog(
+                        context: context,
+                        contentPadding: EdgeInsets.all(8),
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        initialDate: DateTime.now(),
+                        maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
+                        minDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
+                        enabledCellTextStyle:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                        daysNameTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ),
+                        daysNameCase: DaysNameCase.camelCase,
+                        currentDateTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                        currentDateDecoration:
+                            BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(96)),
+                        leadingDateTextStyle:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                        selectedCellTextStyle:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                        disbaledCellTextStyle:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                      );
+                      if (date != null) {
+                        setState(() {
+                          selectedDate = date;
+                        });
+                      }
+                    },
+                    child: const Text('Show Picker'),
+                  ),
+                ],
+              ),
       ),
     );
   }

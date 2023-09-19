@@ -10,6 +10,9 @@ const double _dayPickerRowHeight = 52.0;
 ///
 /// The days are arranged in a rectangular grid with one column for each day of
 /// the week.
+///
+enum DaysNameCase { upperCase, lowerCase, camelCase }
+
 class DaysView extends StatelessWidget {
   /// Displays the days of a given month and allows choosing a day.
   ///
@@ -35,11 +38,11 @@ class DaysView extends StatelessWidget {
     required this.splashColor,
     this.splashRadius,
     this.selectedDate,
+    this.daysNameCase,
   })  : assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate"),
         assert(() {
           if (selectedDate == null) return true;
-          return selectedDate.isAfter(minDate) &&
-              selectedDate.isBefore(maxDate);
+          return selectedDate.isAfter(minDate) && selectedDate.isBefore(maxDate);
         }(), "selected date should be in the range of min date & max date");
 
   /// The currently selected date.
@@ -103,6 +106,9 @@ class DaysView extends StatelessWidget {
   /// The radius of the ink splash.
   final double? splashRadius;
 
+  /// To provide casing for days name like sun,mon, tue
+  final DaysNameCase? daysNameCase;
+
   /// Builds widgets showing abbreviated days of week. The first widget in the
   /// returned list corresponds to the first day of week for the current locale.
   ///
@@ -126,8 +132,7 @@ class DaysView extends StatelessWidget {
     MaterialLocalizations localizations,
   ) {
     final List<Widget> result = <Widget>[];
-    final weekdayNames =
-        intl.DateFormat('', locale.toString()).dateSymbols.SHORTWEEKDAYS;
+    final weekdayNames = intl.DateFormat('', locale.toString()).dateSymbols.SHORTWEEKDAYS;
 
     // Monday is represented by 1 and Sunday is represented by 7.
     // but MaterialLocalizations does not have 7 instead the sunday is 0.
@@ -141,7 +146,13 @@ class DaysView extends StatelessWidget {
         ExcludeSemantics(
           child: Center(
             child: Text(
-              weekday.toUpperCase(),
+              daysNameCase == DaysNameCase.lowerCase
+                  ? weekday.toLowerCase()
+                  : daysNameCase == DaysNameCase.upperCase
+                      ? weekday.toUpperCase()
+                      : daysNameCase == DaysNameCase.camelCase
+                          ? toCamaleCase(weekday: weekday)
+                          : weekday.toUpperCase(),
               style: daysNameTextStyle,
               // style: isToday
               //     ? headerStyle?.copyWith(color: Colors.red)
@@ -159,8 +170,7 @@ class DaysView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialLocalizations localizations =
-        MaterialLocalizations.of(context);
+    final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     //
     //
     //
@@ -183,10 +193,8 @@ class DaysView extends StatelessWidget {
         dayItems.add(const SizedBox.shrink());
       } else {
         final DateTime dayToBuild = DateTime(year, month, day);
-        final bool isDisabled =
-            dayToBuild.isAfter(maxDate) || dayToBuild.isBefore(minDate);
-        final bool isSelectedDay =
-            DateUtils.isSameDay(selectedDate, dayToBuild);
+        final bool isDisabled = dayToBuild.isAfter(maxDate) || dayToBuild.isBefore(minDate);
+        final bool isSelectedDay = DateUtils.isSameDay(selectedDate, dayToBuild);
 
         final bool isToday = DateUtils.isSameDay(currentDate, dayToBuild);
         //
@@ -238,8 +246,7 @@ class DaysView extends StatelessWidget {
               // day of month before the rest of the date, as they are looking
               // for the day of month. To do that we prepend day of month to the
               // formatted full date.
-              label:
-                  '${localizations.formatDecimal(day)}, ${localizations.formatFullDate(dayToBuild)}',
+              label: '${localizations.formatDecimal(day)}, ${localizations.formatFullDate(dayToBuild)}',
               selected: isSelectedDay,
               excludeSemantics: true,
               child: dayWidget,
@@ -266,5 +273,13 @@ class DaysView extends StatelessWidget {
         addRepaintBoundaries: false,
       ),
     );
+  }
+
+  String toCamaleCase({required String weekday}) {
+    if (weekday.length >= 2) {
+      return "${weekday[0].toUpperCase()}${weekday.substring(1).toLowerCase()}";
+    } else {
+      return weekday;
+    }
   }
 }

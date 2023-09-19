@@ -45,6 +45,7 @@ class _DaysPicker extends StatefulWidget {
     required this.highlightColor,
     required this.splashColor,
     this.splashRadius,
+    this.daysNameCase,
   }) : assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate");
 
   /// Called when the user picks a month.
@@ -111,6 +112,8 @@ class _DaysPicker extends StatefulWidget {
   /// The radius of the ink splash.
   final double? splashRadius;
 
+  final DaysNameCase? daysNameCase;
+
   /// Defines the localized resource values used by the Material widgets.
   ///
   /// See also:
@@ -138,8 +141,7 @@ class __DaysPickerState extends State<_DaysPicker> {
     _pageController = PageController(
       initialPage: DateUtils.monthDelta(widget.minDate, widget.initialDate),
     );
-    if (isSevenRows(widget.initialDate.year, widget.initialDate.month,
-        widget.initialDate.day)) {
+    if (isSevenRows(widget.initialDate.year, widget.initialDate.month, widget.initialDate.day)) {
       maxHeight = 52 * 7;
     }
     super.initState();
@@ -151,8 +153,7 @@ class __DaysPickerState extends State<_DaysPicker> {
     // page view and not the initial date.
     // but for makeing debuging easy, we will navigate to the initial date again
     // if it changes.
-    if (DateUtils.dateOnly(oldWidget.initialDate) !=
-        DateUtils.dateOnly(widget.initialDate)) {
+    if (DateUtils.dateOnly(oldWidget.initialDate) != DateUtils.dateOnly(widget.initialDate)) {
       _pageController.jumpToPage(
         DateUtils.monthDelta(widget.minDate, widget.initialDate),
       );
@@ -167,8 +168,7 @@ class __DaysPickerState extends State<_DaysPicker> {
   }
 
   Widget _buildItems(BuildContext context, int index) {
-    final DateTime month =
-        DateUtils.addMonthsToMonthDate(widget.minDate, index);
+    final DateTime month = DateUtils.addMonthsToMonthDate(widget.minDate, index);
 
     return DaysView(
       key: ValueKey<DateTime>(month),
@@ -189,6 +189,7 @@ class __DaysPickerState extends State<_DaysPicker> {
       highlightColor: widget.highlightColor,
       splashColor: widget.splashColor,
       splashRadius: widget.splashRadius,
+      daysNameCase: widget.daysNameCase,
       onChanged: (value) {
         setState(() {
           _selectedDate = value;
@@ -199,8 +200,7 @@ class __DaysPickerState extends State<_DaysPicker> {
   }
 
   void _handleMonthPageChanged(int monthPage) {
-    final DateTime monthDate =
-        DateUtils.addMonthsToMonthDate(widget.minDate, monthPage);
+    final DateTime monthDate = DateUtils.addMonthsToMonthDate(widget.minDate, monthPage);
 
     setState(() {
       _displayedMonth = monthDate;
@@ -213,8 +213,7 @@ class __DaysPickerState extends State<_DaysPicker> {
   }
 
   bool isSevenRows(int year, int month, int weekday) {
-    final offset =
-        DateUtils.firstDayOffset(year, month, widget.materialLocalizations);
+    final offset = DateUtils.firstDayOffset(year, month, widget.materialLocalizations);
     final daysCount = DateUtils.getDaysInMonth(year, month);
 
     // 30 & 5 => false
@@ -324,6 +323,7 @@ class DaysPicker extends StatelessWidget {
     required this.highlightColor,
     required this.splashColor,
     this.splashRadius,
+    this.daysNameCase,
   }) : assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate");
 
   /// Called when the user picks a month.
@@ -390,6 +390,8 @@ class DaysPicker extends StatelessWidget {
   /// The radius of the ink splash.
   final double? splashRadius;
 
+  final DaysNameCase? daysNameCase;
+
   @override
   Widget build(BuildContext context) {
     return _DaysPicker(
@@ -414,6 +416,7 @@ class DaysPicker extends StatelessWidget {
       materialLocalizations: MaterialLocalizations.of(context),
       onChange: onChange,
       onLeadingDateTap: onLeadingDateTap,
+      daysNameCase: daysNameCase,
     );
   }
 }

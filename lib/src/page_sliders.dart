@@ -1,3 +1,4 @@
+import 'package:date_picker_plus/src/leading_date.dart';
 import 'package:flutter/cupertino.dart';
 
 /// Controlls the next & previous page.
@@ -6,6 +7,9 @@ class PageSliders extends StatelessWidget {
   final VoidCallback onBackward;
   final Color slidersColor;
   final double slidersSized;
+  final VoidCallback onDateTap;
+  final String displayedDate;
+  final TextStyle leadingDateTextStyle;
 
   /// Controlls the next & previous page.
   const PageSliders({
@@ -14,6 +18,9 @@ class PageSliders extends StatelessWidget {
     required this.onBackward,
     required this.slidersColor,
     required this.slidersSized,
+    required this.onDateTap,
+    required this.displayedDate,
+    required this.leadingDateTextStyle,
   }) : super(key: key);
 
   @override
@@ -21,7 +28,8 @@ class PageSliders extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: onBackward,
@@ -40,7 +48,11 @@ class PageSliders extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 20),
+          LeadingDate(
+            onTap: onDateTap,
+            displayedText: displayedDate,
+            displayedTextStyle: leadingDateTextStyle,
+          ),
           GestureDetector(
             onTap: onForward,
             child: SizedBox(

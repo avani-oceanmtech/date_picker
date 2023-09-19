@@ -1,3 +1,4 @@
+import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
 
 import 'date_picker.dart';
@@ -67,6 +68,7 @@ Future<DateTime?> showDatePickerDialog({
   Color? highlightColor,
   Color? splashColor,
   double? splashRadius,
+  DaysNameCase? daysNameCase,
 }) async {
   return showDialog<DateTime>(
     context: context,
@@ -108,6 +110,7 @@ Future<DateTime?> showDatePickerDialog({
             highlightColor: highlightColor,
             splashColor: splashColor,
             splashRadius: splashRadius,
+            daysNameCase: daysNameCase,
           ),
         ),
       );
