@@ -103,8 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () async {
                       final date = await showDatePickerDialog(
                         context: context,
-                        contentPadding: EdgeInsets.all(8),
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        backgroundColor: Colors.white,
+                        contentPadding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         initialDate: DateTime.now(),
                         maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
                         minDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
