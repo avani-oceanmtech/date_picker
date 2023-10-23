@@ -70,6 +70,7 @@ Future<DateTime?> showDatePickerDialog({
   double? splashRadius,
   DaysNameCase? daysNameCase,
   Color? backgroundColor,
+  Color? surfaceTintColor,
 }) async {
   return showDialog<DateTime>(
     context: context,
@@ -86,6 +87,7 @@ Future<DateTime?> showDatePickerDialog({
         child: Dialog(
           insetPadding: EdgeInsets.zero,
           backgroundColor: backgroundColor ?? Colors.white,
+          surfaceTintColor: surfaceTintColor ?? Colors.white,
           child: DatePicker(
             initialDate: initialDate,
             maxDate: maxDate,

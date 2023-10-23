@@ -102,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   TextButton(
                     onPressed: () async {
                       final date = await showDatePickerDialog(
+                        surfaceTintColor: Colors.white,
                         context: context,
                         backgroundColor: Colors.white,
                         contentPadding: const EdgeInsets.all(8),
