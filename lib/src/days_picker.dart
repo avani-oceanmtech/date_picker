@@ -133,7 +133,7 @@ class __DaysPickerState extends State<_DaysPicker> {
   DateTime? _selectedDate;
   final GlobalKey _pageViewKey = GlobalKey();
   late final PageController _pageController;
-  double maxHeight = 52 * 6; // A 31 day month that starts on Saturday.
+  double maxHeight = 42 * 6; // A 31 day month that starts on Saturday.
 
   @override
   void initState() {
@@ -142,7 +142,7 @@ class __DaysPickerState extends State<_DaysPicker> {
       initialPage: DateUtils.monthDelta(widget.minDate, widget.initialDate),
     );
     if (isSevenRows(widget.initialDate.year, widget.initialDate.month, widget.initialDate.day)) {
-      maxHeight = 52 * 7;
+      maxHeight = 42 * 7;
     }
     super.initState();
   }
@@ -205,9 +205,9 @@ class __DaysPickerState extends State<_DaysPicker> {
     setState(() {
       _displayedMonth = monthDate;
       if (isSevenRows(monthDate.year, monthDate.month, monthDate.weekday)) {
-        maxHeight = 52 * 7;
+        maxHeight = 42 * 7;
       } else {
-        maxHeight = 52 * 6;
+        maxHeight = 42 * 6;
       }
     });
   }

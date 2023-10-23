@@ -105,8 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         surfaceTintColor: Colors.white,
                         context: context,
                         backgroundColor: Colors.white,
-                        contentPadding: const EdgeInsets.all(8),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         initialDate: DateTime.now(),
                         maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
                         minDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
@@ -121,8 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
-                        currentDateDecoration:
-                            BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(96)),
+                        currentDateDecoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
                         leadingDateTextStyle:
                             Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                         selectedCellTextStyle:

@@ -4,7 +4,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'picker_grid_delegate.dart';
 
-const double _dayPickerRowHeight = 52.0;
+const double _dayPickerRowHeight = 42.0;
 
 /// Displays the days of a given month and allows choosing a day.
 ///

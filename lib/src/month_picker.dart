@@ -132,8 +132,7 @@ class _MonthPickerState extends State<MonthPicker> {
     // for makeing debuging easy, we will navigate to the initial date again
     // if it changes.
     if (oldWidget.initialDate.year != widget.initialDate.year) {
-      _pageController
-          .jumpToPage((widget.initialDate.year - widget.minDate.year));
+      _pageController.jumpToPage((widget.initialDate.year - widget.minDate.year));
     }
     // if (oldWidget.selectedDate != widget.selectedDate) {
     //   _selectedMonth = widget.selectedDate;
@@ -148,8 +147,7 @@ class _MonthPickerState extends State<MonthPicker> {
   }
 
   Widget _buildItems(BuildContext context, int index) {
-    final DateTime yearDate = DateTime(
-        widget.minDate.year + index, widget.minDate.month, widget.minDate.day);
+    final DateTime yearDate = DateTime(widget.minDate.year + index, widget.minDate.month, widget.minDate.day);
 
     return MonthView(
       key: ValueKey<DateTime>(yearDate),
@@ -179,8 +177,7 @@ class _MonthPickerState extends State<MonthPicker> {
   }
 
   void _handleYearPageChanged(int yearPage) {
-    final DateTime yearDate = DateTime(widget.minDate.year + yearPage,
-        widget.minDate.month, widget.minDate.day);
+    final DateTime yearDate = DateTime(widget.minDate.year + yearPage, widget.minDate.month, widget.minDate.day);
 
     setState(() {
       _displayedYear = yearDate;
@@ -214,7 +211,7 @@ class _MonthPickerState extends State<MonthPicker> {
         ),
         const SizedBox(height: 10),
         AnimatedContainer(
-          height: 78 * 4,
+          height: 55 * 4,
           duration: const Duration(milliseconds: 200),
           child: PageView.builder(
             scrollDirection: Axis.horizontal,

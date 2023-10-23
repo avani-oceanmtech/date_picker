@@ -32,8 +32,7 @@ class MonthView extends StatelessWidget {
   })  : assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate"),
         assert(() {
           if (selectedMonth == null) return true;
-          return selectedMonth.isAfter(minDate) &&
-              selectedMonth.isBefore(maxDate);
+          return selectedMonth.isAfter(minDate) && selectedMonth.isBefore(maxDate);
         }(), "selected date should be in the range of min date & max date");
 
   /// The currently selected month.
@@ -95,8 +94,7 @@ class MonthView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialLocalizations localizations =
-        MaterialLocalizations.of(context);
+    final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     final locale = Localizations.localeOf(context);
 
     final int year = displayedYear.year;
@@ -106,23 +104,19 @@ class MonthView extends StatelessWidget {
     final DateTime endMonth = DateTime(maxDate.year, maxDate.month);
     DateTime? selectedMonth;
     if (this.selectedMonth != null) {
-      selectedMonth =
-          DateTime(this.selectedMonth!.year, this.selectedMonth!.month);
+      selectedMonth = DateTime(this.selectedMonth!.year, this.selectedMonth!.month);
     }
 
-    final monthsNames =
-        DateFormat('', locale.toString()).dateSymbols.STANDALONESHORTMONTHS;
+    final monthsNames = DateFormat('', locale.toString()).dateSymbols.STANDALONESHORTMONTHS;
     final monthsWidgetList = <Widget>[];
 
     int month = 0;
     while (month < 12) {
       final DateTime monthToBuild = DateTime(year, month + 1);
 
-      final bool isDisabled =
-          monthToBuild.isAfter(endMonth) || monthToBuild.isBefore(startMonth);
+      final bool isDisabled = monthToBuild.isAfter(endMonth) || monthToBuild.isBefore(startMonth);
 
-      final bool isCurrentMonth =
-          monthToBuild == DateTime(currentDate.year, currentDate.month);
+      final bool isCurrentMonth = monthToBuild == DateTime(currentDate.year, currentDate.month);
 
       final bool isSelected = monthToBuild == selectedMonth;
       //
@@ -187,8 +181,8 @@ class MonthView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const PickerGridDelegate(
         columnCount: 3,
-        rowExtent: 60,
-        rowStride: 80,
+        rowExtent: 52,
+        rowStride: 52,
       ),
       childrenDelegate: SliverChildListDelegate(
         monthsWidgetList,

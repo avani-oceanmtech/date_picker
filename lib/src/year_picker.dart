@@ -115,12 +115,10 @@ class _YearsPickerState extends State<YearsPicker> {
   /// between [minDate] and [maxDate].
   ///
   /// Each page will contains 12 years in a 3 x 4 grid.
-  int get pageCount =>
-      ((widget.maxDate.year - widget.minDate.year + 1) / 12).ceil();
+  int get pageCount => ((widget.maxDate.year - widget.minDate.year + 1) / 12).ceil();
 
   int get initialPageNumber {
-    final page =
-        ((widget.initialDate.year - widget.minDate.year + 1) / 12).ceil() - 1;
+    final page = ((widget.initialDate.year - widget.minDate.year + 1) / 12).ceil() - 1;
     if (page < 0) return 0;
     return page;
   }
@@ -217,8 +215,7 @@ class _YearsPickerState extends State<YearsPicker> {
           slidersColor: widget.slidersColor,
           slidersSize: widget.slidersSize,
           onDateTap: () {},
-          displayedDate:
-              '${_displayedRange?.start.year} - ${_displayedRange?.end.year}',
+          displayedDate: '${_displayedRange?.start.year} - ${_displayedRange?.end.year}',
           onNextPage: () {
             _pageController.nextPage(
               duration: const Duration(milliseconds: 300),
@@ -234,7 +231,7 @@ class _YearsPickerState extends State<YearsPicker> {
         ),
         const SizedBox(height: 10),
         AnimatedContainer(
-          height: 78 * 4,
+          height: 55 * 4,
           duration: const Duration(milliseconds: 200),
           child: PageView.builder(
             scrollDirection: Axis.horizontal,

@@ -30,14 +30,11 @@ class YearView extends StatelessWidget {
     this.splashRadius,
   })  : assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate"),
         assert(() {
-          return (displayedYearRange.end.year -
-                  displayedYearRange.start.year) ==
-              11;
+          return (displayedYearRange.end.year - displayedYearRange.start.year) == 11;
         }(), "the display year range must always be 12 years."),
         assert(() {
           if (selectedYear == null) return true;
-          return selectedYear.isAfter(minDate) &&
-              selectedYear.isBefore(maxDate);
+          return selectedYear.isAfter(minDate) && selectedYear.isBefore(maxDate);
         }(), "selected date should be in the range of min date & max date");
 
   /// The currently selected year.
@@ -114,8 +111,7 @@ class YearView extends StatelessWidget {
 
     int i = 0;
     while (i < numberOfYears) {
-      final bool isDisabled =
-          yearsName[i] > maxDate.year || yearsName[i] < minDate.year;
+      final bool isDisabled = yearsName[i] > maxDate.year || yearsName[i] < minDate.year;
 
       final bool isCurrentYear = yearsName[i] == currentYear;
 
@@ -183,8 +179,8 @@ class YearView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const PickerGridDelegate(
         columnCount: 3,
-        rowExtent: 60,
-        rowStride: 80,
+        rowExtent: 52,
+        rowStride: 52,
       ),
       childrenDelegate: SliverChildListDelegate(
         yearWidgetsList,
