@@ -98,7 +98,8 @@ Future<DateTime?> showDatePickerDialog({
             currentDateDecoration: currentDateDecoration,
             currentDateTextStyle: currentDateTextStyle,
             disbaledCellDecoration: disbaledCellDecoration,
-            disbaledCellTextStyle: disbaledCellTextStyle,
+            disbaledCellTextStyle: disbaledCellTextStyle ??
+                Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.black38),
             enabledCellDecoration: enabledCellDecoration,
             enabledCellTextStyle: enabledCellTextStyle,
             selectedCellDecoration: selectedCellDecoration,
@@ -108,7 +109,11 @@ Future<DateTime?> showDatePickerDialog({
             disbaledCellColor: disbaledCellColor,
             selectedCellColor: selectedCellColor,
             enabledCellColor: enabledCellColor,
-            leadingDateTextStyle: leadingDateTextStyle,
+            leadingDateTextStyle: leadingDateTextStyle ??
+                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
             slidersColor: slidersColor,
             slidersSize: slidersSize,
             highlightColor: highlightColor,

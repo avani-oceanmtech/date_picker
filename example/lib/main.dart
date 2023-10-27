@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         initialDate: DateTime.now(),
-                        maxDate: DateTime.now().add(const Duration(days: 365 * 3)),
+                        maxDate: DateTime.now(), //DateTime.now().add(const Duration(days: 365 * 3)),
                         minDate: DateTime.now().subtract(const Duration(days: 365 * 3)),
                         enabledCellTextStyle:
                             Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -121,13 +121,19 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
+                        slidersColor: Colors.amber,
                         currentDateDecoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-                        leadingDateTextStyle:
-                            Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                        leadingDateTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              // color: Colors.green,
+                            ),
                         selectedCellTextStyle:
                             Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-                        disbaledCellTextStyle:
-                            Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                        // disbaledCellTextStyle: Theme.of(context)
+                        //     .textTheme
+                        //     .bodyMedium
+                        //     ?.copyWith(fontWeight: FontWeight.bold, color: Colors.black38),
                       );
                       if (date != null) {
                         setState(() {

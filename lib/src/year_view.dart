@@ -179,7 +179,7 @@ class YearView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const PickerGridDelegate(
         columnCount: 3,
-        rowExtent: 52,
+        rowExtent: 48,
         rowStride: 52,
       ),
       childrenDelegate: SliverChildListDelegate(

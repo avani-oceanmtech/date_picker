@@ -181,7 +181,7 @@ class MonthView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const PickerGridDelegate(
         columnCount: 3,
-        rowExtent: 52,
+        rowExtent: 44,
         rowStride: 52,
       ),
       childrenDelegate: SliverChildListDelegate(
